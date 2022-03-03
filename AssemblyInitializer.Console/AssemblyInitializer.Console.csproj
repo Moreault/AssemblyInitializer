@@ -15,10 +15,15 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Helps decouple initialization logic by splitting it into AssemblyInitializer classes.</Description>
 		<PackageIcon>assemblyinitializer.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 	  <None Include="..\assemblyinitializer.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
