@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>1.0.0</Version>
+		<RootNamespace>ToolBX.$(AssemblyName)</RootNamespace>
+		<PackageId>ToolBX.$(AssemblyName)</PackageId>
+		<Product>ToolBX.$(AssemblyName)</Product>
+		<Authors>Mathieu Moreault</Authors>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/Moreault/AssemblyInitializer</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/Moreault/AssemblyInitializer</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Description>Helps decouple initialization logic by splitting it into AssemblyInitializer classes.</Description>
+		<PackageIcon>assemblyinitializer.png</PackageIcon>
+	</PropertyGroup>
+
+</Project>
