@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyInitializer", "AssemblyInitializer\AssemblyInitializer.csproj", "{3FCF05ED-96BC-4C6E-A99D-781FDA922290}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInitializer.Console", "AssemblyInitializer.Console\AssemblyInitializer.Console.csproj", "{207CC465-2ED4-4FD1-8812-1CC122166E8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssemblyInitializer.Console", "AssemblyInitializer.Console\AssemblyInitializer.Console.csproj", "{207CC465-2ED4-4FD1-8812-1CC122166E8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyInitializer.Console.Sample", "AssemblyInitializer.Console.Sample\AssemblyInitializer.Console.Sample.csproj", "{CAFA6D4A-B648-4C2A-BD31-3E8ABE01E2BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{207CC465-2ED4-4FD1-8812-1CC122166E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{207CC465-2ED4-4FD1-8812-1CC122166E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{207CC465-2ED4-4FD1-8812-1CC122166E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFA6D4A-B648-4C2A-BD31-3E8ABE01E2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFA6D4A-B648-4C2A-BD31-3E8ABE01E2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFA6D4A-B648-4C2A-BD31-3E8ABE01E2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFA6D4A-B648-4C2A-BD31-3E8ABE01E2BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
