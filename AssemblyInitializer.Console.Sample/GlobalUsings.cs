@@ -5,3 +5,4 @@ global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Options;
 global using ToolBX.AssemblyInitializer.Console;
+global using ToolBX.AutoInject;

@@ -21,7 +21,7 @@ public static class ConsoleHost
         IServiceCollection services = new ServiceCollection();
         services.AddOptions();
 
-        var startup = (T)Activator.CreateInstance(typeof(T), configuration);
+        var startup = (T)Activator.CreateInstance(typeof(T), configuration)!;
         startup.ConfigureServices(services);
 
         var provider = services.BuildServiceProvider();

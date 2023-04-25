@@ -5,9 +5,9 @@ namespace ToolBX.AssemblyInitializer.Console;
 
 public class ConsoleAppBuilder : IApplicationBuilder
 {
-    public IServiceProvider ApplicationServices { get; set; }
-    public IFeatureCollection ServerFeatures { get; }
-    public IDictionary<string, object> Properties { get; }
+    public IServiceProvider? ApplicationServices { get; set; }
+    public IFeatureCollection ServerFeatures => null!;
+    public IDictionary<string, object> Properties => null!;
 
     public IApplicationBuilder Use(Func<RequestDelegate, RequestDelegate> middleware)
     {
