@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-
-namespace ToolBX.AssemblyInitializer.Console;
+﻿namespace ToolBX.AssemblyInitializer.Console;
 
 public class ConsoleAppBuilder : IApplicationBuilder
 {
-    public IServiceProvider? ApplicationServices { get; set; }
+    public IServiceProvider ApplicationServices { get; set; } = null!;
     public IFeatureCollection ServerFeatures => null!;
-    public IDictionary<string, object> Properties => null!;
+    public IDictionary<string, object?> Properties => null!;
 
     public IApplicationBuilder Use(Func<RequestDelegate, RequestDelegate> middleware)
     {

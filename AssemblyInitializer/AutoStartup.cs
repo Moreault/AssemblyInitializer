@@ -1,11 +1,14 @@
-﻿namespace ToolBX.AssemblyInitializer;
+﻿using ToolBX.Reflection4Humans.Extensions;
+using ToolBX.Reflection4Humans.TypeFetcher;
+
+namespace ToolBX.AssemblyInitializer;
 
 public abstract class AutoStartup
 {
     public IConfiguration Configuration { get; }
 
     private IEnumerable<IAssemblyInitializer> Initializers => _initializers.Value;
-    private readonly Lazy<IList<IAssemblyInitializer>> _initializers = new(() => AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).Where(x => x.IsClass && !x.IsAbstract && x.GetInterface(nameof(IAssemblyInitializer)) != null).Select(x => (IAssemblyInitializer?)Activator.CreateInstance(x) ?? throw new Exception($"Couldn't create instance of {x.FullName}")).ToList());
+    private readonly Lazy<IList<IAssemblyInitializer>> _initializers = new(() => Types.Where(x => x.IsClass && !x.IsAbstract && x.Implements<IAssemblyInitializer>()).Select(x => (IAssemblyInitializer?)Activator.CreateInstance(x) ?? throw new Exception($"Couldn't create instance of {x.FullName}")).ToList());
 
     protected AutoStartup(IConfiguration configuration)
     {
