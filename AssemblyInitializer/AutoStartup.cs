@@ -1,7 +1,4 @@
-﻿using ToolBX.Reflection4Humans.Extensions;
-using ToolBX.Reflection4Humans.TypeFetcher;
-
-namespace ToolBX.AssemblyInitializer;
+﻿namespace ToolBX.AssemblyInitializer;
 
 public abstract class AutoStartup
 {
@@ -19,7 +16,7 @@ public abstract class AutoStartup
     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddAutoConfig(Configuration);
+        AutoConfig.ServiceCollectionExtensions.AddAutoConfig(services, Configuration);
         services.AddAutoInjectServices();
 
         foreach (var initializer in Initializers)
