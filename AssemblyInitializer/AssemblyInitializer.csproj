@@ -31,8 +31,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-		<PackageReference Include="ToolBX.AutoConfig" Version="2.2.0-beta1" />
-		<PackageReference Include="ToolBX.AutoInject" Version="2.2.0-beta5" />
+		<PackageReference Include="ToolBX.AutoConfig" Version="2.2.0-beta3" />
+		<PackageReference Include="ToolBX.AutoInject" Version="2.2.0-beta7" />
 	</ItemGroup>
 
 	<ItemGroup>
