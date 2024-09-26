@@ -2,7 +2,7 @@
 
 public static class ConsoleHost
 {
-    public static T UseStartup<T>() where T : ConsoleStartup
+    public static T UseStartup<T>(params string[] arguments) where T : ConsoleStartup
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -22,6 +22,8 @@ public static class ConsoleHost
         services.AddOptions();
 
         var startup = (T)Activator.CreateInstance(typeof(T), configuration)!;
+        startup.Arguments = arguments;
+
         startup.ConfigureServices(services);
 
         var provider = services.BuildServiceProvider();

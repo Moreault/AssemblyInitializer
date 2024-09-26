@@ -12,5 +12,6 @@ public class Startup : ConsoleStartup
         var options = serviceProvider.GetRequiredService<IOptions<SampleOptions>>().Value;
 
         System.Console.WriteLine(options.Greeting);
+        System.Console.WriteLine($"Arguments : {string.Join(", ", Arguments)}");
     }
 }
