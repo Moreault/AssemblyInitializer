@@ -2,14 +2,13 @@
 
 public static class ConsoleHost
 {
+    [RequiresUnreferencedCode(AutoStartup.DiscoveryRequiresUnreferencedCode)]
+    [RequiresDynamicCode(AutoStartup.DiscoveryRequiresDynamicCode)]
     public static T UseStartup<T>(params string[] arguments) where T : ConsoleStartup
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-        var env = new ConsoleHostEnvironment
-        {
-
-        };
+        var env = new ConsoleHostEnvironment();
 
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())

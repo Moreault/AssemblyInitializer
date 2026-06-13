@@ -2,8 +2,10 @@
 
 public abstract class ConsoleStartup : AutoStartup
 {
-    public IReadOnlyList<string> Arguments { get; protected internal set; } = Array.Empty<string>();
+    public IReadOnlyList<string> Arguments { get; protected internal set; } = [];
 
+    [RequiresUnreferencedCode(DiscoveryRequiresUnreferencedCode)]
+    [RequiresDynamicCode(DiscoveryRequiresDynamicCode)]
     protected ConsoleStartup(IConfiguration configuration) : base(configuration)
     {
     }
