@@ -1,23 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-		<IsAotCompatible>true</IsAotCompatible>
-		<Version>4.0.0-beta1</Version>
 		<RootNamespace>ToolBX.$(AssemblyName)</RootNamespace>
 		<PackageId>ToolBX.$(AssemblyName)</PackageId>
 		<Product>ToolBX.$(AssemblyName)</Product>
-		<Authors>Mathieu Moreault</Authors>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<RepositoryUrl>https://github.com/Moreault/AssemblyInitializer</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/Moreault/AssemblyInitializer</PackageProjectUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Description>Helps decouple initialization logic by splitting it into AssemblyInitializer classes.</Description>
-		<PackageIcon>assemblyinitializer.png</PackageIcon>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<IsAotCompatible>true</IsAotCompatible>
+		<IsTrimmable>false</IsTrimmable>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -32,12 +22,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.9" />
 		<PackageReference Include="ToolBX.AutoConfig" Version="4.0.0-beta1" />
 		<PackageReference Include="ToolBX.AutoInject" Version="4.0.0-beta.2" />
 	</ItemGroup>
 
+	<!-- Build the generator and ship it as an analyzer inside this package. -->
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<ProjectReference Include="..\AssemblyInitializer.Generators\AssemblyInitializer.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\AssemblyInitializer.Generators\bin\$(Configuration)\netstandard2.0\AssemblyInitializer.Generators.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 	</ItemGroup>
 
 </Project>
