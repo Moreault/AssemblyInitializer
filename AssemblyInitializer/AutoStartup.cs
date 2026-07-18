@@ -1,32 +1,53 @@
-﻿namespace ToolBX.AssemblyInitializer;
+namespace ToolBX.AssemblyInitializer;
 
 public abstract class AutoStartup
 {
+    private const string RegistrarTypeName = "ToolBX.AssemblyInitializer.Generated.AssemblyInitializerRegistrar";
+
     public IConfiguration Configuration { get; }
 
-    private IEnumerable<IAssemblyInitializer> Initializers => _initializers.Value;
-    private readonly Lazy<IList<IAssemblyInitializer>> _initializers = new(() => Types.Where(x => x.IsClass && !x.IsAbstract && x.Implements<IAssemblyInitializer>()).Select(x => (IAssemblyInitializer?)Activator.CreateInstance(x) ?? throw new Exception($"Couldn't create instance of {x.FullName}")).ToList());
+    private IReadOnlyList<IAssemblyInitializer> Initializers => _initializers.Value;
+    private readonly Lazy<IReadOnlyList<IAssemblyInitializer>> _initializers = new(DiscoverInitializers);
 
     protected AutoStartup(IConfiguration configuration)
     {
         Configuration = configuration;
     }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
-    // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
         AutoConfig.ServiceCollectionExtensions.AddAutoConfig(services, Configuration);
         services.AddAutoInjectServices();
 
         foreach (var initializer in Initializers)
-            initializer.Configure(services, Configuration);
+            initializer.ConfigureServices(services, Configuration);
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostEnvironment env)
+    public void Configure(IInitializerContext context)
     {
         foreach (var initializer in Initializers)
-            initializer.Configure(app, env);
+            initializer.Configure(context);
+    }
+
+    // Each assembly containing initializers carries [HasAssemblyInitializers] (emitted by the source generator)
+    // and a generated registrar whose CreateInitializers() instantiates them with plain 'new' expressions. We only
+    // reflect across the thin, well-known registrar boundary — no type enumeration and no Activator.CreateInstance.
+    private static IReadOnlyList<IAssemblyInitializer> DiscoverInitializers()
+    {
+        var initializers = new List<IAssemblyInitializer>();
+
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            if (assembly.GetCustomAttribute<HasAssemblyInitializersAttribute>() is null)
+                continue;
+
+            var method = assembly.GetType(RegistrarTypeName)
+                ?.GetMethod("CreateInitializers", BindingFlags.Public | BindingFlags.Static);
+
+            if (method?.Invoke(null, null) is IEnumerable<IAssemblyInitializer> created)
+                initializers.AddRange(created);
+        }
+
+        return initializers;
     }
 }

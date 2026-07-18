@@ -1,8 +1,8 @@
-﻿namespace ToolBX.AssemblyInitializer.Console;
+namespace ToolBX.AssemblyInitializer.Console;
 
 public abstract class ConsoleStartup : AutoStartup
 {
-    public IReadOnlyList<string> Arguments { get; protected internal set; } = Array.Empty<string>();
+    public IReadOnlyList<string> Arguments { get; protected internal set; } = [];
 
     protected ConsoleStartup(IConfiguration configuration) : base(configuration)
     {

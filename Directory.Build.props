@@ -1,0 +1,25 @@
+<Project>
+
+	<!-- Shared defaults for every project in the repo. Project files override TargetFramework where needed
+	     (e.g. the source generator targets netstandard2.0). -->
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	</PropertyGroup>
+
+	<!-- Common NuGet package identity. Ignored by non-packable projects. -->
+	<PropertyGroup>
+		<Version>4.0.0</Version>
+		<Authors>Mathieu Moreault</Authors>
+		<RepositoryUrl>https://github.com/Moreault/AssemblyInitializer</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/Moreault/AssemblyInitializer</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>assemblyinitializer.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+</Project>

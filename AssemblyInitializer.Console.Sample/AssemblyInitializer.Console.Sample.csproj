@@ -2,17 +2,11 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net8.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Remove="appsettings.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Include="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -20,6 +14,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\AssemblyInitializer.Console\AssemblyInitializer.Console.csproj" />
+		<!-- In-solution projects don't receive the generator transitively the way NuGet consumers do, so wire it up explicitly. -->
+		<ProjectReference Include="..\AssemblyInitializer.Generators\AssemblyInitializer.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 </Project>
